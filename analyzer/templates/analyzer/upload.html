@@ -2,31 +2,94 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>TextAnalitica — Интеллектуальный анализ текста</title>
+        <title>Text Analitica - Upload</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 30px;
+                background-color: #f8f9fa;
+            }
+            h1,
+            h2 {
+                color: #343a40;
+            }
+            textarea,
+            select,
+            input[type='file'] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                font-size: 16px;
+            }
+            input[type='submit'] {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            input[type='submit']:hover {
+                background-color: #0056b3;
+            }
+            .result {
+                background-color: #ffffff;
+                padding: 15px;
+                border: 1px solid #dee2e6;
+                margin-top: 30px;
+            }
+        </style>
     </head>
     <body>
-        <h1>TextAnalitica — Интеллектуальный анализ текста</h1>
+        <h1>Text Analitica</h1>
+        <p>Upload a text file or enter text manually for analysis.</p>
 
-        <form method="post">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <textarea name="text" rows="10" cols="80">{{ text }}</textarea
-            ><br />
-            <button type="submit">Анализировать</button>
+
+            <label for="text_file">Upload .txt file:</label>
+            <input type="file" name="text_file" id="text_file" />
+
+            <label for="manual_text">Or enter text manually:</label>
+            <textarea
+                name="manual_text"
+                rows="10"
+                placeholder="Enter your text here..."
+            ></textarea>
+
+            <label for="language">Choose language:</label>
+            <select name="language" id="language">
+                <option value="english">English</option>
+                <option value="russian">Russian</option>
+                <option value="german">German</option>
+                <option value="french">French</option>
+                <option value="spanish">Spanish</option>
+                <option value="italian">Italian</option>
+                <option value="portuguese">Turkish/option></option>
+            </select>
+
+            <input type="submit" value="Analyze Text" />
         </form>
 
-        {% if text %}
-        <h2>Результаты анализа:</h2>
-        <p><strong>Всего слов:</strong> {{ total_words }}</p>
-        <p><strong>Уникальных слов:</strong> {{ unique_words }}</p>
-        <p><strong>Символов:</strong> {{ characters }}</p>
-        <p><strong>Тональность (Polarity):</strong> {{ polarity }}</p>
-        <p><strong>Субъективность:</strong> {{ subjectivity }}</p>
-        <h3>Наиболее частые слова:</h3>
-        <ul>
-            {% for word, freq in most_common %}
-            <li>{{ word }} — {{ freq }}</li>
-            {% endfor %}
-        </ul>
+        {% if results %}
+        <div class="result">
+            <h2>Analysis Results:</h2>
+            <p>
+                <strong>Number of sentences:</strong> {{ results.num_sentences
+                }}
+            </p>
+            <p><strong>Number of words:</strong> {{ results.num_words }}</p>
+            <p>
+                <strong>Number of unique words:</strong> {{
+                results.num_unique_words }}
+            </p>
+            <p><strong>Most common words:</strong></p>
+            <ul>
+                {% for word, count in results.most_common %}
+                <li>{{ word }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
     </body>
 </html>

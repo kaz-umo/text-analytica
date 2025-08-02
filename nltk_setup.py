@@ -1,22 +1,21 @@
 import nltk
 import os
 
-# Создание папки nltk_data локально
-nltk_data_path = 'nltk_data'
-os.makedirs(nltk_data_path, exist_ok=True)
+# Локальный путь
+local_nltk_data = os.path.join(os.getcwd(), 'nltk_data')
+os.makedirs(local_nltk_data, exist_ok=True)
 
-# Добавляем оба пути, чтобы nltk знал, где искать
-nltk.data.path.append(nltk_data_path)
+# Указание путей, где NLTK будет искать данные
+nltk.data.path.append(local_nltk_data)
 nltk.data.path.append('/app/nltk_data')  # для Heroku
 
-# Загружаем все языковые токенизаторы через punkt
-nltk.download('punkt', download_dir=nltk_data_path)
-nltk.download('stopwords', download_dir=nltk_data_path)
+# Загрузка необходимых пакетов
+nltk.download('punkt', download_dir=local_nltk_data)
+nltk.download('stopwords', download_dir=local_nltk_data)
 
-# Языки, которые хотим проверить
-languages = ['english', 'russian', 'german', 'french', 'spanish', 'italian']
+# Проверка загрузки моделей для языков
+languages = ['english', 'russian', 'german', 'french', 'spanish', 'italian', 'turkish']
 
-# Проверяем загрузку соответствующих .pickle-файлов
 for lang in languages:
     try:
         tokenizer = nltk.data.load(f'tokenizers/punkt/{lang}.pickle')
