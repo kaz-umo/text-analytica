@@ -67,40 +67,25 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'basic_module' %}">
+                            <a class="nav-link" href="{% url 'm1_basic' %}">
                                 Базовый
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="{% url 'extraction_module' %}"
-                            >
-                                Извлечение
+                            <a class="nav-link" href="{% url 'm2_lexical' %}">
+                                Лексический
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="{% url 'statistics_module' %}"
-                            >
-                                Статистика
+                            <a class="nav-link" href="{% url 'm3_semantic' %}">
+                                Семантический
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="{% url 'lexical_module' %}"
-                            >
-                                Лексико-семантический
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'topic_module' %}">
+                            <a class="nav-link" href="{% url 'm4_topic' %}">
                                 Тематический
                             </a>
                         </li>
@@ -108,17 +93,14 @@
                         <li class="nav-item">
                             <a
                                 class="nav-link"
-                                href="{% url 'evaluation_module' %}"
+                                href="{% url 'm5_evaluation' %}"
                             >
                                 Оценочный
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="{% url 'context_module' %}"
-                            >
+                            <a class="nav-link" href="{% url 'm6_context' %}">
                                 Контекстный
                             </a>
                         </li>
