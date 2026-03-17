@@ -1,0 +1,89 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TextAnalitica</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    </head>
+
+    <body>
+        <header>
+            <div class="logo">🚀 TextAnalitica</div>
+            <div class="subtitle">
+                Интеллектуальная система анализа текстов ИСАТ
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- ЛЕВАЯ ПАНЕЛЬ -->
+            <div class="left">
+                <h3>Добавить текст</h3>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <textarea
+                        name="text"
+                        placeholder="Введите текст для анализа..."
+                    ></textarea>
+
+                    <div class="buttons">
+                        <button type="submit">🚀 Запустить анализ</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ЦЕНТРАЛЬНАЯ ПАНЕЛЬ -->
+            <div class="center">
+                <div class="results">
+                    <h3>Результаты предварительного анализа</h3>
+
+                    <div class="metric">Количество слов: {{ word_count }}</div>
+
+                    <div class="metric">
+                        Количество предложений: {{ sentence_count }}
+                    </div>
+
+                    <div class="metric">
+                        Количество символов: {{ char_count }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ ПАНЕЛЬ -->
+            <div class="right">
+                <h3>Аналитические модули</h3>
+
+                <button class="module m1">
+                    📘 Модуль №1<br />Базовый лингвистический
+                </button>
+
+                <button class="module m2">
+                    🔑 Модуль №2<br />Лексический (ключевые слова, NER)
+                </button>
+
+                <button class="module m3">
+                    🧠 Модуль №3<br />Семантический
+                </button>
+
+                <button class="module m4">
+                    📊 Модуль №4<br />Тематический
+                </button>
+
+                <button class="module m5">😊 Модуль №5<br />Оценочный</button>
+
+                <button class="module m6">
+                    🧩 Модуль №6<br />Контекстно-композиционный
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 ИСАТ TextAnalitica | Интеллектуальная система анализа
+            текстов<br />
+            КазУМОиМЯ им. Абылай хана. Алматы – Шымкент
+        </footer>
+    </body>
+</html>

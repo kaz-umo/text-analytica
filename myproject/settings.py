@@ -8,9 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Безопасность
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-secret-key-for-dev')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']  # В продакшене укажи конкретные хосты или домен Heroku
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # В продакшене укажи конкретные хосты или домен Heroku
 
 # Установленные приложения
 INSTALLED_APPS = [
@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # твои приложения:
     'analyzer',
+    'linguistics',
 ]
 
 # Промежуточное ПО (middleware)
@@ -89,6 +90,9 @@ USE_TZ = True
 
 # Статические файлы (CSS, JS, изображения)
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # WhiteNoise storage backend для Heroku
@@ -100,3 +104,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Автоматическая конфигурация Heroku (в самом конце!)
 django_heroku.settings(locals())
+

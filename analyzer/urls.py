@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
+from .views import home_view
 
 urlpatterns = [
-    path('', views.rocket_view, name='rocket'),  # http://127.0.0.1:8000/analyzer/
-    path('analyze/', views.upload_text, name='upload_text'),  # http://127.0.0.1:8000/analyzer/analyze/
+    path('', home_view, name='home'),
 ]
